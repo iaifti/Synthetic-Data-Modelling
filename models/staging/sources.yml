@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    database: practice_project_01
+    schema: raw_data
+    
+    tables:
+      - name: raw_customers
+      - name: raw_payments
+      - name: raw_products
+      - name: raw_invoices
+      - name: raw_subscriptions
