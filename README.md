@@ -147,8 +147,7 @@ Both generic and singular tests are implemented across all layers.
 - `relationships` to enforce referential integrity across models
 - `accepted_values` on status fields (e.g. `active`, `canceled`, `succeeded`)
 
-**Singular tests (custom SQL):**
-- `assert_payment_amount_positive` — no zero or negative payment amounts
+**Singular tests (custom SQL):
 - `assert_subscription_dates_valid` — `ended_at` must not precede `started_at`
 - `assert_no_revenue_without_customer` — all payments must have a valid customer
 
