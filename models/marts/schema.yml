@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension table with derived fields for stakeholders"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_products
+    description: "Product dimension table"
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+      - name: product_price
+        tests:
+          - not_null
+
+  - name: fct_payments
+    description: "All payment transactions enriched with customer info"
+    columns:
+      - name: payment_id
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('dim_customers')
+                field: customer_id
+
+      - name: payment_status
+        tests:
+          - accepted_values:
+              arguments: 
+                values: ['succeeded', 'failed', 'pending']
+
+  - name: fct_subscriptions
+    description: "All subscriptions enriched with customer and product info"
+    columns:
+      - name: subscription_id
+        tests:
+          - unique
+          - not_null
+
+      - name: is_active
+        tests:
+          - accepted_values:
+              arguments: 
+                values: [0, 1]
+
+      - name: is_churned
+        tests:
+          - accepted_values:
+              arguments: 
+                values: [0, 1]  

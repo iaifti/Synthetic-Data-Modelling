@@ -1,2 +1,98 @@
 version: 2
 
+models:
+  - name: stg_raw__raw_customers
+    description: "Cleaned customers from raw source"
+    columns:
+      - name: customer_id
+        description: "Primary key for customers"
+        tests:
+          - unique
+          - not_null
+
+      - name: email
+        description: "Customer email address"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_raw__raw_payments
+    description: "Cleaned payments from raw source"
+    columns:
+      - name: payment_id
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('stg_raw__raw_customers')
+                field: customer_id
+
+      - name: status
+        tests:
+          - accepted_values:
+                arguments:
+                  values: ['succeeded', 'failed']
+
+
+  - name: stg_raw__raw_subscriptions
+    description: "Cleaned subscriptions from raw source"
+    columns:
+      - name: subscription_id
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_raw__raw_customers')
+                field: customer_id
+
+      - name: product_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_raw__raw_products')
+                field: product_id
+
+      - name: status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['active', 'canceled']
+
+  - name: stg_raw__raw_invoices
+    description: "Cleaned invoices from raw source"
+    columns:
+      - name: invoice_id
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_raw__raw_customers')
+                field: customer_id
+
+  - name: stg_raw__raw_products
+    description: "Cleaned products from raw source"
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+      - name: monthly_price
+        tests:
+          - not_null
