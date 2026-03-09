@@ -37,6 +37,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   staging:
-    +materialized: view
+      +materialized: view        # lightweight, always fresh
+      +schema: staging
+  intermediate:
+      +materialized: view        # still logic, not final
+      +schema: intermediate
+  marts:
+      +materialized: table       # stakeholders query these
+      +schema: marts
+  aggregations:
+      +materialized: table       # heavy aggregations, save compute
+      +schema: aggregations
   
     
