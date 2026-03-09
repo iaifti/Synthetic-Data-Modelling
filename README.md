@@ -11,7 +11,7 @@
 
 ## Overview
 
-End-to-end analytics engineering project modelling a Stripe-like payments platform. Raw synthetic data across customers, payments, products, invoices, and subscriptions is ingested into Snowflake and transformed using dbt into a fully tested, documented, and stakeholder-ready analytics layer.
+End-to-end analytics engineering project modelling a Stripe-like payments platform which I created by a custom **Python** script to generate 500k+ transaction data for 100k+ customers. Raw synthetic data across customers, payments, products, invoices, and subscriptions is ingested into Snowflake and transformed using dbt into a fully tested, documented, and stakeholder-ready analytics layer.
 
 The pipeline produces key SaaS business metrics including **Monthly Recurring Revenue (MRR)**, **churn rate**, **customer lifetime value (CLV)**, and **product performance** — all built with production-grade practices.
 
