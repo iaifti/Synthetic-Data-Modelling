@@ -159,7 +159,9 @@ dbt test
 dbt test --select staging
 dbt test --select marts
 ```
+## Lineage of the Project:
 
+<img src="Lineage.png" width=800 height=600>
 ---
 
 ## Getting Started
@@ -218,3 +220,4 @@ dbt docs serve
 - Writing **generic and singular dbt tests** to enforce data quality at every layer
 - Modelling core **SaaS metrics** (MRR, churn, CLV) from raw transactional data
 - Managing **Snowflake schema configuration** via `dbt_project.yml` materialisation settings: Revenue and subscription counts per product
+
